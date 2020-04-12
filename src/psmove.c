@@ -1339,7 +1339,7 @@ psmove_set_rumble(PSMove *move, unsigned char rumble)
         return;
     }
 
-    move->leds.rumble2 = 0x00;
+    move->leds.rumble2 = rumble;
     move->leds.rumble = rumble;
     move->leds_dirty = 1;
 }
