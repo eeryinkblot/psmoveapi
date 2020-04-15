@@ -72,27 +72,27 @@ int main(int argc, char* argv[])
 
     bool running = true;
     while(running) {
-        for(i=0; i<c; i++) {
-            while(psmove_poll(moves[i])) {}
+        // for(i=0; i<c; i++) {
+            while(psmove_poll(moves[0])) {}
             int buttons = psmove_get_buttons(moves[i]);
             int x, y, z, r, g, b;
-            psmove_get_accelerometer(moves[i], &x, &y, &z);
+            psmove_get_accelerometer(moves[0], &x, &y, &z);
             r = convert_accel_to_col(x);
             g = convert_accel_to_col(y);
             b = convert_accel_to_col(z);
             if(buttons & Btn_PS)
                 running = false;
             else if(buttons & Btn_MOVE)
-                psmove_set_leds(moves[i], 255, 255, 255);
+                psmove_set_leds(moves[0], 255, 255, 255);
             else
-				psmove_set_leds(moves[i], (unsigned char)r, (unsigned char)g, (unsigned char)b);
+				psmove_set_leds(moves[0], (unsigned char)r, (unsigned char)g, (unsigned char)b);
             clock_t t = clock();
             if(((t/CLOCKS_PER_SEC) % 5) == 0)
-                psmove_set_rumble(moves[i], 255);
+                psmove_set_rumble(moves[0], 255);
             else
-                psmove_set_rumble(moves[i], 0);
-            psmove_update_leds(moves[i]);
-        }
+                psmove_set_rumble(moves[0], 0);
+            psmove_update_leds(moves[0]);
+        // }
     }
 
     for(i=0; i<c; i++) {
